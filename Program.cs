@@ -1,14 +1,7 @@
-using gestionBiblioteca.Models;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddDbContext<Bfkxytwn9bgzdtfvozeuContext>(options =>{
-    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConection"),Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql"));
-});
 
 var app = builder.Build();
 
