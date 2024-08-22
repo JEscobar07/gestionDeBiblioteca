@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div class="row">
+    <form action="@Url.Content("~/Login")" method="post">
+        <div class="form-group">
+            <label>Usuario</label>
+            <input type="email" name="user" id="" placeholder="luisa@gmail.com">
+        </div>
+
+        <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" name="password" id="">
+        </div>
+
+        <div class="form-group">
+            <input type="button" value="entrar" class="btn btn-success">
+        </div>
+
+    </form>
+
+    
+</div>
+    
+</div>
