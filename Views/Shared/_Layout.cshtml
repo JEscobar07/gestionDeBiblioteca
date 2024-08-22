@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,25 +9,29 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/gestionBiblioteca.styles.css" asp-append-version="true" />
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">gestionBiblioteca</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Loan" asp-action="Index">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    <header class="d-flex justify-content-center mt-4 mb-4">
+        <nav
+            class="nav1 navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom mb-4 rounded-pill w-75 d-flex justify-content-between align-items-center p-2">
+            <div class="container d-flex">
+                <a href="" class="d-flex align-items-center"><img
+                        src="https://r.mobirisesite.com/640395/assets/images/mbr-121x89.png?v=1SH7oH" alt="books"></a>
+
+                <ul class="d-flex align-items-center list fs-2">
+                    <li>
+                        <a class="text-black" href="">library</a>
+                    </li>
+                    <li>
+                        <a class="text-black" href="">Libro</a>
+                    </li>
+                    <li>
+                        <a class="text-black" href="">Prestamo</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="p-2">
+                <a href="" class="btn btn-success text-white rounded-pill fs-2 me-5 p-4 w-100">Login</a>
             </div>
         </nav>
     </header>
@@ -36,14 +41,14 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - gestionBiblioteca - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer class="border-top footer text-muted bg-success">
+        <p class="text-white container d-flex justify-content-center">© Copyright 2024 Biblioteca - Todos los derechos
+            reservados</p>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
