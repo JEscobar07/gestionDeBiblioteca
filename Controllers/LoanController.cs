@@ -23,9 +23,17 @@ namespace gestionDeBiblioteca.Controllers
 
         public async Task<IActionResult> IndexLoan()
         {
-            List<Loan> loans = await bdLibrary.Loans.ToListAsync();
-            return View(loans);
-        }
+            var loans = await bdLibrary.Loans.ToListAsync();
+            var authors = await bdLibrary.Authors.ToListAsync();
 
+            var viewModel = new LoanViewModel
+            {
+                Loans = loans,
+                Authors = authors
+            };
+            
+            return View(viewModel); // Pasamos el modelo de vista a la vista
+        }
     }
+
 }
