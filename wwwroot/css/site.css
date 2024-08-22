@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 html {
   font-size: 14px;
 }
@@ -17,6 +19,21 @@ html {
   min-height: 100%;
 }
 
+.list{
+  list-style-type: none;
+}
+
+.list a{
+  text-decoration: none;
+  padding: 30px;
+}
+
 body {
   margin-bottom: 60px;
+  background-color: #fff;
+}
+
+.nav1{
+  height: 122px;
+  box-shadow: 0 0.25rem 0.75rem rgb(133 133 133 / 31%);
 }
