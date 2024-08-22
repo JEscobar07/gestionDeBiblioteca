@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
+using gestionBiblioteca.Models;
 
-namespace gestionBiblioteca.Models;
+namespace gestionBiblioteca.Data;
 
 public partial class Bfkxytwn9bgzdtfvozeuContext : DbContext
 {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 //base de datos 
-using gestionBiblioteca.Models;
+using gestionBiblioteca.Data;
 
 namespace gestionDeBiblioteca.Controllers
 {
@@ -34,7 +34,7 @@ namespace gestionDeBiblioteca.Controllers
         public IActionResult Login(string user,string password)
         {
             try
-            {
+            {   
                 var oUser = _context.Users
                             .Where(d=> d.Email == user.Trim() && d.Password.Trim() == password.Trim())
                             .FirstOrDefault();

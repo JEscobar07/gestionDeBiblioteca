@@ -20,3 +20,34 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.all{
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+}
+
+.form-group{
+  border: none;
+  background-color: rgb(255, 255, 255);
+  line-height: 1.3;
+  border-radius: 40px !important;
+  color: #232323;
+  padding: 1.2rem 1.2rem;
+  transition: border-color 0.25s ease 0s;
+  border: 1px solid transparent !important;
+  box-shadow: rgba(0, 0, 0, 0.021) 0px 1px 1px 0px, rgba(0, 0, 0, 0.07) 0px 1px 3px 0px, rgba(0, 0, 0, 0.03) 0px 0px 0px 1px;
+}
+
+.display2{
+  font-family: 'Inter Tight', sans-serif;
+  font-size: calc(1.575rem + 3.9vw);
+  line-height: 1;
+}
+
+.background{
+    padding-top: 6rem;
+  padding-bottom: 6rem;
+  background-color: #edefeb82;
+  border-radius: 10px;
+}
