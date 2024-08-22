@@ -9,7 +9,7 @@ using gestionBiblioteca.Models;
 using gestionBiblioteca.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace gestionDeBiblioteca.Controllers
+namespace gestionBiblioteca.Controllers
 {
     [Route("[controller]")]
     public class LoanController : Controller
@@ -24,12 +24,14 @@ namespace gestionDeBiblioteca.Controllers
         public async Task<IActionResult> IndexLoan()
         {
             var loans = await bdLibrary.Loans.ToListAsync();
-            var authors = await bdLibrary.Authors.ToListAsync();
+            var books = await bdLibrary.Books.ToListAsync();
+            var clients = await bdLibrary.Clients.ToListAsync();
 
             var viewModel = new LoanViewModel
             {
                 Loans = loans,
-                Authors = authors
+                Books = books,
+                Clients = clients
             };
             
             return View(viewModel); // Pasamos el modelo de vista a la vista

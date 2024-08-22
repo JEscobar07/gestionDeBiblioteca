@@ -10,7 +10,7 @@ public partial class Bfkxytwn9bgzdtfvozeuContext : DbContext
 {
     public Bfkxytwn9bgzdtfvozeuContext()
     {
-    }
+    } 
 
     public Bfkxytwn9bgzdtfvozeuContext(DbContextOptions<Bfkxytwn9bgzdtfvozeuContext> options)
         : base(options)

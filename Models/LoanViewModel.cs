@@ -9,6 +9,7 @@ namespace gestionBiblioteca.Models
     public class LoanViewModel
     {
         public List<Loan> Loans { get; set; }
-        public List<Author> Authors { get; set; }
+        public List<Client> Clients { get; set; }
+        public List<Book> Books {get; set;}
     }
 }
