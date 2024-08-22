@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
+using System.Linq;
+using System.Threading.Tasks;
+
 using gestionBiblioteca.Models;
 
 namespace gestionBiblioteca.Data;

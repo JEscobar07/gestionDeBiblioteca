@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
+using gestionDeBiblioteca.Data;
+
 namespace gestionDeBiblioteca.Controllers
 {
     [Route("[controller]")]
     public class UserController : Controller
     {
-        // private readonly ILogger<UserController> _logger;
 
-        // public UserController(ILogger<UserController> logger)
-        // {
-        //     _logger = logger;
-        // }
+        private readonly Bfkxytwn9bgzdtfvozeuContext _context;
 
-        public IActionResult CreateUser()
+        public UserController(Bfkxytwn9bgzdtfvozeuContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            var users = _context.Users.ToList();
+            return View(CreateUser);
         }
 
     }

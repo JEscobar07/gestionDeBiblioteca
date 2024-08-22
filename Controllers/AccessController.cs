@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-//base de datos 
 using gestionBiblioteca.Data;
 
-namespace gestionDeBiblioteca.Controllers
+namespace gestionBiblioteca.Controllers
 {
     [Route("[controller]")]
-    public class Access : Controller
+    public class AccessController : Controller
     {
-        //base de datos
+         //base de datos
         private readonly Bfkxytwn9bgzdtfvozeuContext _context;
 
-        public Access(Bfkxytwn9bgzdtfvozeuContext context)
+        public AccessController(Bfkxytwn9bgzdtfvozeuContext context)
         {
             _context = context;
         }
@@ -30,7 +29,6 @@ namespace gestionDeBiblioteca.Controllers
 
         //Post: access/login
         [HttpPost]
-
         public IActionResult Login(string user,string password)
         {
             try
@@ -46,9 +44,8 @@ namespace gestionDeBiblioteca.Controllers
                     return View();
                 }
 
-                //objeto llamado seccion es un arreglo donde ingreso elementos que deseo
-                //guardo en este objeto el usuario existente
-                //Session["User"] = oUser;
+                //objeto llamado seccion es un arreglo donde guardo en este objeto el usuario existente
+                Session["User"] = oUser;
 
                 //donde me redirecciona si si encuentra 
                 return RedirectToAction("Index", "Home");
