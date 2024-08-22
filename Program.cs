@@ -1,5 +1,6 @@
 using gestionBiblioteca.Models;
 using Microsoft.EntityFrameworkCore;
+using gestionBiblioteca.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

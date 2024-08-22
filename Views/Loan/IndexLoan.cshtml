@@ -1,0 +1,79 @@
+@{
+}
+@model gestionBiblioteca.Models.LoanViewModel;
+
+<link rel="stylesheet" href="~/css/IndexLoan.css" asp-append-version="true" />
+@*Opciones de los botones: Crear, elimar,actualizar, Historial de prestamos *@
+<div class="buttonsOptions">
+    <div class="card">
+        <div class="card-body d-flex flex-column align-items-center">
+            <i class="bi bi-arrow-down-circle-fill"></i>
+            <p>Crear Prestamo</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <i class="bi bi-x-circle-fill"></i>
+            <p>Eliminar Prestamo</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <i class="bi bi-arrow-down-up"></i>
+            <p>Actualizar Prestamo</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <i class="bi bi-card-checklist"></i>
+            <p>Ver Historial <br> De Prestamo</p>
+        </div>
+    </div>
+</div>
+
+
+
+@* Espacio 1: Crear un prestamo *@
+
+<div class="spaceOne">
+    <strong>Crear</strong>
+    <form>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="titleCreate" placeholder="Titulo">
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="titleCreate" placeholder="Estado">
+        </div>
+        <select id="disabledSelect" class="form-select">
+            @foreach( var item in Model.Authors){
+                <option>@item.Name</option>
+            }
+        </select>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+@* Espacio 4: Historial de prestamos *@
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id prestamo</th>
+                <th scope="col">Fecha de prestamo</th>
+                <th scope="col">Fecha de devolucion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Loans)
+            {
+                <tr>
+                    <th>@item.IdLoan</th>
+                    <td>@item.DeliveryDate</td>
+                    <td>@item.ReturnDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
