@@ -1,0 +1,45 @@
+@{
+}
+@model List<gestionBiblioteca.Models.Loan>;
+<link rel="stylesheet" href="~/css/IndexLoan.css" asp-append-version="true" />
+@*Opciones de los botones: Crear, elim *@
+
+@* Espacio 1: Crear un prestamo *@
+
+<div class="spaceOne">
+    <strong>Crear</strong>
+    <form>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="titleCreate" placeholder="Titulo">
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="titleCreate" placeholder="Estado">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+@* Espacio 4: Historial de prestamos *@
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id prestamo</th>
+                <th scope="col">Fecha de prestamo</th>
+                <th scope="col">Fecha de devolucion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.IdLoan</th>
+                    <td>@item.DeliveryDate</td>
+                    <td>@item.ReturnDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
