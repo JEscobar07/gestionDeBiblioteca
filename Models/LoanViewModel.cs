@@ -8,7 +8,7 @@ namespace gestionBiblioteca.Models
 {
     public class LoanViewModel
     {
-        public List<Loan> Loans { get; set; }
+        public List<Record> Records { get; set; }
         public List<Client> Clients { get; set; }
         public List<Book> Books {get; set;}
         public Loan NewLoan {get; set;}

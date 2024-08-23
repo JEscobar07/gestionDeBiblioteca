@@ -23,15 +23,15 @@ namespace gestionBiblioteca.Controllers
 
         public async Task<IActionResult> IndexLoan()
         {
-            var loans = await bdLibrary.Loans
-                                        .Include(l => l.IdBookNavigation)
-                                        .Include(l => l.IdClientNavigation)
+            var records = await bdLibrary.Records
+                                        .Include(l => l.IdLoanNavigation)
+                                            .ThenInclude(l => l.IdBookNavigation)
                                         .ToListAsync();
 
 
             var viewModel = new LoanViewModel
             {
-                Loans = loans,
+                Records = records,
                 Books = await bdLibrary.Books.ToListAsync(),
                 Clients = await bdLibrary.Clients.ToListAsync(),
                 NewLoan = new Loan()
