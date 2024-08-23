@@ -68,6 +68,45 @@
 
 @* Espacio 2: Devolver un prestamo *@
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Prestamo ID</th>
+            <th>Libro titulo</th>
+            <th>Nombre Cliente</th>
+            <th>Fecha de Entrega</th>
+            <th>Fecha de Devolucion</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var loan in Model.Loans)
+        {
+            var book = Model.Books.FirstOrDefault(b => b.IdBook == loan.IdBook);
+            var client = Model.Clients.FirstOrDefault(c => c.IdClient == loan.IdClient);
+
+            <tr>
+                <td>@loan.IdLoan</td>
+                <td>@(book?.Title ?? "Unknown")</td>
+                <td>@(client?.Name ?? "Unknown")</td>
+                <td>@loan.DeliveryDate</td>
+                <td>@loan.ReturnDate</td>
+                <td>
+                    @if (loan.ReturnDate == null)
+                    {
+                        <form asp-action="ReturnLoan" asp-route-id="@loan.IdLoan" method="post">
+                            <button type="submit" class="btn btn-success">Devolver Préstamo</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span>Préstamo Devuelto</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 
 @* Espacio 3: Actualizar un prestamo *@
