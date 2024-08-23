@@ -3,36 +3,32 @@
 @model gestionBiblioteca.Models.LoanViewModel;
 <link rel="stylesheet" href="~/css/IndexLoan.css" asp-append-version="true" />
 
-@{
-    var searchBook = Model.Books.Where(b => b.Title.Contains("C#")).ToList();
-}
-
 @*Opciones de los botones: Crear, elimar,actualizar, Historial de prestamos *@
 
 <div class="buttonsOptions">
-    <div class="card">
-        <div class="card-body d-flex flex-column align-items-center">
+    <div class="card text-decoration-none">
+        <a class="card-body d-flex flex-column align-items-center" href="#create">
             <i class="bi bi-arrow-down-circle-fill"></i>
             <p>Crear Prestamo</p>
-        </div>
+        </a>
     </div>
-    <div class="card">
-        <div class="card-body">
+    <div class="card text-decoration-none">
+        <a class="card-body" href="#return">
             <i class="bi bi-x-circle-fill"></i>
-            <p>Eliminar Prestamo</p>
-        </div>
+            <p>Devolver Prestamo</p>
+        </a>
     </div>
-    <div class="card">
-        <div class="card-body">
+    <div class="card text-decoration-none">
+        <a class="card-body" href="#update">
             <i class="bi bi-arrow-down-up"></i>
             <p>Actualizar Prestamo</p>
-        </div>
+        </a>
     </div>
-    <div class="card">
-        <div class="card-body">
+    <div class="card text-decoration-none">
+        <a class="card-body" href="#record">
             <i class="bi bi-card-checklist"></i>
             <p>Ver Historial <br> De Prestamo</p>
-        </div>
+        </a>
     </div>
 </div>
 
@@ -40,9 +36,9 @@
 
 @* Espacio 1: Crear un prestamo *@
 
-<div class="spaceOne mt-5">
+<div class="spaceOne mt-5" id=crear>
     <strong class="title">Crear Prestamo</strong>
-    <form asp-action="CreateLoan">
+    <form asp-controller="Loan" asp-action="CreateLoan" method="post">
 
         <label for="idBook" class="label" >Libro</label>
         <select id="idBook" class="form-select" asp-for="NewLoan.IdBook" required>
@@ -62,7 +58,7 @@
 
 @* Espacio 2: Devolver un prestamo *@
 
-<div class="spaceOne mt-5">
+<div class="spaceOne mt-5" id="return">
     <strong class="title">Devolver prestamo</strong>
     <table class="table">
         <thead>
@@ -107,7 +103,7 @@
 
 @* Espacio 3: Actualizar un prestamo *@
 
-<div class="spaceOne mt-5">
+<div class="spaceOne mt-5" id="update">
     <strong class="title">Actualizar prestamo</strong>
     <table class="table">
         <thead>
@@ -160,7 +156,7 @@
 
 @* Espacio 4: Historial de prestamos *@
 
-<div class="spaceOne mt-5">
+<div class="spaceOne mt-5" id ="record">
     <strong class="title">Historial de prestamos</strong>
     <table class="table">
         <thead>
