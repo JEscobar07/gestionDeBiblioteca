@@ -2,6 +2,8 @@ using gestionBiblioteca.Models;
 using Microsoft.EntityFrameworkCore;
 using gestionBiblioteca.Data;
 
+using gestionBiblioteca.filters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +12,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Bfkxytwn9bgzdtfvozeuContext>(options =>{
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConection"),Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql"));
 });
+
+// Configurar el filtro global
+// builder.Services.AddControllersWithViews(options =>
+// {
+//     options.Filters.Add<VerifySession>();
+// });
 
 var app = builder.Build();
 
@@ -23,6 +31,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 
 app.UseRouting();
 

@@ -6,25 +6,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-using gestionDeBiblioteca.Data;
+using Microsoft.EntityFrameworkCore;
 
-namespace gestionDeBiblioteca.Controllers
+using gestionBiblioteca.Data;
+
+namespace gestionBiblioteca.Controllers
 {
     [Route("[controller]")]
     public class UserController : Controller
     {
-
         private readonly Bfkxytwn9bgzdtfvozeuContext _context;
 
         public UserController(Bfkxytwn9bgzdtfvozeuContext context)
         {
             _context = context;
         }
-
-        public IActionResult Index()
+        
+        public async Task<IActionResult> CreateUser()
         {
-            var users = _context.Users.ToList();
-            return View(CreateUser);
+            var roles = await _context.Roles.ToListAsync();
+            return View(roles);
         }
 
     }

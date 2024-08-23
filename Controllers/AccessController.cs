@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+
 
 using gestionBiblioteca.Data;
 
@@ -22,36 +24,38 @@ namespace gestionBiblioteca.Controllers
         }
 
         //get access
-        public IActionResult Login()
+        public ActionResult Login()
         {
             return View();
         }
 
         //Post: access/login
         [HttpPost]
-        public IActionResult Login(string user,string password)
+        public ActionResult Login(string user,string password)
         {
             try
             {   
                 var oUser = _context.Users
-                            .Where(d=> d.Email == user.Trim() && d.Password.Trim() == password.Trim())
-                            .FirstOrDefault();
-
+                            .Where(d=> d.Email == user.Trim() && d.Password.Trim() == password.Trim()).Select(d=>d).FirstOrDefault();
+                    // System.Console.WriteLine(oUser.GetType());
                 if (oUser == null)
                 {
                     // ViewBag es un diccionario que se obtiene desde la vista que maneja un error
                     ViewBag.Error = "¡Usuario o password invalido!";
                     return View();
                 }
-
+                
+               
+                
                 //objeto llamado seccion es un arreglo donde guardo en este objeto el usuario existente
-                Session["User"] = oUser;
+                //Session["User"] = oUser;
 
                 //donde me redirecciona si si encuentra 
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
+                throw new  Exception ("error al ingresar usuario"+ ex);
                 //Manejar la excepcion 
                 ViewBag.Error = "Ha ocurrido un error"+ ex.Message;
                 return View();
