@@ -11,5 +11,6 @@ namespace gestionBiblioteca.Models
         public List<Loan> Loans { get; set; }
         public List<Client> Clients { get; set; }
         public List<Book> Books {get; set;}
+        public Loan NewLoan {get; set;}
     }
 }

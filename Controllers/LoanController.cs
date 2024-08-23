@@ -23,19 +23,32 @@ namespace gestionBiblioteca.Controllers
 
         public async Task<IActionResult> IndexLoan()
         {
-            var loans = await bdLibrary.Loans.ToListAsync();
-            var books = await bdLibrary.Books.ToListAsync();
-            var clients = await bdLibrary.Clients.ToListAsync();
+            var loans = await bdLibrary.Loans
+                                        .Include(l => l.IdBookNavigation)
+                                        .Include(l => l.IdClientNavigation)
+                                        .ToListAsync();
+
 
             var viewModel = new LoanViewModel
             {
                 Loans = loans,
-                Books = books,
-                Clients = clients
+                Books = await bdLibrary.Books.ToListAsync(),
+                Clients = await bdLibrary.Clients.ToListAsync(),
+                NewLoan = new Loan()
             };
-            
-            return View(viewModel); // Pasamos el modelo de vista a la vista
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateLoan(LoanViewModel loan)
+        {
+            var newLoan = loan.NewLoan;
+            newLoan.ReturnDate = null;
+            bdLibrary.Loans.Add(newLoan);
+            await bdLibrary.SaveChangesAsync();
+            return RedirectToAction(nameof(IndexLoan));
         }
     }
-
 }
+

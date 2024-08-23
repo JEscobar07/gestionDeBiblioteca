@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="~/css/IndexLoan.css" asp-append-version="true" />
 
 @{
-     var searchBook = Model.Books.Where(b => b.Title.Contains("C#")).ToList();
+   
 }
 
 @*Opciones de los botones: Crear, elimar,actualizar, Historial de prestamos *@
@@ -41,26 +41,23 @@
 
 <div class="spaceOne">
     <strong>Crear</strong>
-    <form>
+    <form asp-action="CreateLoan">
         <div class="mb-3">
-            <input type="text" class="form-control" id="titleCreate" placeholder="Titulo">
+            <input type="date" class="form-control" id="dateCreate" asp-for="NewLoan.DeliveryDate" placeholder="Fecha del prestamo">
         </div>
-        <div class="mb-3">
-            <input type="text" class="form-control" id="titleCreate" placeholder="Estado">
-        </div>
-        <label for="selectBook">Libro</label>
-        <select id="disabledSelect" class="form-select">
+        <label for="idBook">Libro</label>
+        <select id="idBook" class="form-select" asp-for="NewLoan.IdBook">
             @foreach( var item in Model.Books){
-                <option>@item.Title</option>
+                <option value="@item.IdBook">@item.Title</option>
             }
         </select>
-        <label for="selectClient">Cliente</label>
-        <select id="selectClient" class="form-select">
+        <label for="idClient">Cliente</label>
+        <select id="idClient" class="form-select" asp-for="NewLoan.IdClient">
             @foreach( var item in Model.Clients){
-                <option>@item.Name</option>
+                <option value="@item.IdClient">@item.Name</option>
             }
         </select>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>
 
@@ -83,9 +80,11 @@
             @foreach (var item in Model.Loans)
             {
                 <tr>
-                    <th>@item.IdLoan</th>
-                    <td>@item.DeliveryDate</td>
-                    <td>@item.ReturnDate</td>
+                    <td>@item.IdLoan</td>
+                    <td>@item.DeliveryDate.ToString()</td>
+                    <td>@item.ReturnDate.ToString()</td>
+                    <td>@item.IdBookNavigation.Title</td>
+                    <td>@item.IdClientNavigation.Name</td>
                 </tr>
             }
         </tbody>
