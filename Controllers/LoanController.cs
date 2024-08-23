@@ -33,8 +33,26 @@ namespace gestionBiblioteca.Controllers
                 Books = books,
                 Clients = clients
             };
-            
+
             return View(viewModel); // Pasamos el modelo de vista a la vista
+        }
+
+        [HttpPost]
+        [Route("Loan/ReturnLoan")]
+        public async Task<IActionResult> ReturnLoan(int id)
+        {
+            var loan = await bdLibrary.Loans.FindAsync(id);
+
+            if (loan == null)
+            {
+                return NotFound();
+            }
+
+            loan.ReturnDate = DateOnly.FromDateTime(DateTime.Now);
+            bdLibrary.Loans.Update(loan);
+            await bdLibrary.SaveChangesAsync();
+
+            return RedirectToAction(nameof(IndexLoan));
         }
     }
 
