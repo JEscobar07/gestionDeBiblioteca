@@ -35,5 +35,24 @@ namespace gestionDeBiblioteca.Controllers
         {
             return View("Error!");
         }
+        [HttpGet("Create")]
+        public async Task<IActionResult> Create()
+        {
+            var lastBook = await _appDbContext.Books.OrderByDescending(b => b.IdBook).FirstOrDefaultAsync();
+            var AuthorList = await _appDbContext.Authors.ToListAsync();
+            var CategoryList = await _appDbContext.Categories.ToListAsync();
+            int lastId = lastBook != null ? lastBook.IdBook : 0;
+            ViewBag.LastBookId = lastId;
+            ViewBag.AuthorList = AuthorList;
+            ViewBag.CategoryList = CategoryList;
+            return View();
+        }
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create(Book book)
+        {
+            _appDbContext.Books.Add(book);
+            _appDbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
