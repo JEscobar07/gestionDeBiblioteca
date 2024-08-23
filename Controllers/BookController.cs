@@ -54,5 +54,22 @@ namespace gestionDeBiblioteca.Controllers
             _appDbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        [HttpGet("Edit")]
+        public async Task<IActionResult> Update(int id)
+        {
+            Book book = await _appDbContext.Books.FirstAsync(b => b.IdBook == id);
+            var AuthorList = await _appDbContext.Authors.ToListAsync();
+            var CategoryList = await _appDbContext.Categories.ToListAsync();
+            ViewBag.AuthorList = AuthorList;
+            ViewBag.CategoryList = CategoryList;
+            return View(book);
+        }
+        [HttpPost("Edit")]
+        public async Task<IActionResult> Update(Book book)
+        {
+            _appDbContext.Books.Update(book);
+            _appDbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,0 +1,40 @@
+@model gestionBiblioteca.Models.Book
+
+@{
+    var authors = ViewBag.AuthorList;
+    var categories = ViewBag.CategoryList;
+}
+
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        <h2>Actualizar Libro</h2>
+        <form asp-controller="Book" asp-action="Update" method="post">
+            <input asp-for= "IdBook" type="hidden">
+            <div class="mb-3">
+                <label>Titulo Libro</label>
+                <input type="text" asp-for="Title" class="form-control">
+            </div>
+            <select asp-for="Status" class="form-select" aria-label="Default select example">
+                <option selected>Seleccione La Disponibilidad</option>
+                <option value= "true">Disponible</option>
+                <option value= "false">No Disponible</option>
+            </select>
+            <select class="form-select mt-3" asp-for="IdAuthor" aria-label="Default select example">
+                <option selected>Seleccione El Autor</option>
+                @foreach (var author in authors)
+                {
+                    <option value= "@author.IdAuthor">@author.Name</option>
+                }
+            </select>
+            <select class="form-select mt-3" asp-for="IdCategory" aria-label="Default select example">
+                <option selected>Seleccione La Categoria</option>
+                @foreach (var category in categories)
+                {
+                    <option value="@category.IdCategory">@category.TypeCategory</option>
+                }
+            </select>
+            <button type="submit" class="btn btn-success mt-3">Actualizar</button>
+            <a asp-controller="Book" asp-action="Index" class="btn btn-danger mt-3">Volver</a>
+        </form>
+    </div>
+</div>
