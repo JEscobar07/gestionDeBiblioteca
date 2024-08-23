@@ -54,6 +54,23 @@ namespace gestionBiblioteca.Controllers
 
             return RedirectToAction(nameof(IndexLoan));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EditLoan(int id, int Id_Book, int Id_Client, DateTime Delivery_Date, DateTime? Return_Date)
+        {
+            var loan = await bdLibrary.Loans.FindAsync(id);
+            if (loan != null)
+            {
+                loan.IdBook = Id_Book;
+                loan.IdClient = Id_Client;
+                loan.DeliveryDate = DateOnly.FromDateTime(Delivery_Date);
+                loan.ReturnDate = Return_Date.HasValue ? DateOnly.FromDateTime(Return_Date.Value) : null;
+
+                await bdLibrary.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(IndexLoan));
+        }
     }
 
 }
