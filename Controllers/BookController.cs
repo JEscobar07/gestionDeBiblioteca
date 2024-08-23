@@ -71,5 +71,13 @@ namespace gestionDeBiblioteca.Controllers
             _appDbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        [HttpGet("Delete")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Book book = await _appDbContext.Books.FirstAsync(b => b.IdBook == id);
+            _appDbContext.Books.Remove(book);
+            await _appDbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
 }
