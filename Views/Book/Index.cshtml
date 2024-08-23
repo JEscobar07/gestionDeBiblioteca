@@ -1,0 +1,64 @@
+@model List<gestionBiblioteca.Models.Book>
+@{
+    var authors = ViewBag.AuthorList;
+    var categories = ViewBag.CategoryList;
+    int i = 0;
+}
+
+<div>
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+            <h2>Lista Libros</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Id</th>
+                    <th>Titulo Libro</th>
+                    <th>Estado</th>
+                    <th>Autor</th>
+                    <th>Categoria</th>
+                </thead>
+                <tbody>
+                    @foreach (var libro in Model)
+                    {
+                        <tr>
+                            <td>@libro.IdBook</td>
+                            <td>@libro.Title</td>
+                            @if (libro.Status == true)
+                            {
+                                <td>Disponible</td>
+                            }
+                            else
+                            {
+                                <td>No Disponible</td>
+                            }
+                            @foreach (var author in authors)
+                            {
+                                if (author.IdAuthor == libro.IdAuthor)
+                                {
+                                    <td>@author.Name</td>
+                                    break;
+                                }
+                            }
+                            @foreach (var category in categories)
+                            {
+                                if (category.IdCategory == libro.IdCategory)
+                                {
+                                    <td>@category.TypeCategory</td>
+                                    break;
+                                }
+                            }
+                            <td>
+                                <a asp-controller="Book" asp-action="Update" asp-route-id="@libro.IdBook"
+                                    class="btn btn-warning">Editar</a>
+                            </td>
+                            <td>
+                                <a asp-controller="Book" asp-action="Delete" asp-route-id="@libro.IdBook"
+                                    class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
