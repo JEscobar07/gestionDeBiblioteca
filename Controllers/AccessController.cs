@@ -1,21 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-
-
 using gestionBiblioteca.Data;
+using Microsoft.AspNetCore.Http; // Necesario para usar HttpContext.Session
 
 namespace gestionBiblioteca.Controllers
 {
     [Route("[controller]")]
     public class AccessController : Controller
     {
-         //base de datos
+        // Base de datos
         private readonly Bfkxytwn9bgzdtfvozeuContext _context;
 
         public AccessController(Bfkxytwn9bgzdtfvozeuContext context)
@@ -23,44 +17,42 @@ namespace gestionBiblioteca.Controllers
             _context = context;
         }
 
-        //get access
+        // GET: /access/login
         public ActionResult Login()
         {
             return View();
         }
 
-        //Post: access/login
+        // POST: /access/login
         [HttpPost]
-        public ActionResult Login(string user,string password)
+        public ActionResult Login(string user, string password)
         {
             try
             {   
                 var oUser = _context.Users
-                            .Where(d=> d.Email == user.Trim() && d.Password.Trim() == password.Trim()).Select(d=>d).FirstOrDefault();
-                    // System.Console.WriteLine(oUser.GetType());
+                            .Where(d => d.Email == user.Trim() && d.Password.Trim() == password.Trim())
+                            .FirstOrDefault();
+
                 if (oUser == null)
                 {
                     // ViewBag es un diccionario que se obtiene desde la vista que maneja un error
-                    ViewBag.Error = "¡Usuario o password invalido!";
+                    ViewBag.Error = "¡Usuario o contraseña inválido!";
                     return View();
                 }
                 
-               
-                
-                //objeto llamado seccion es un arreglo donde guardo en este objeto el usuario existente
-                //Session["User"] = oUser;
+                // Guardar el usuario en la sesión
+                HttpContext.Session.SetString("User", oUser.Email); // Puedes guardar el Email o algún identificador único
 
-                //donde me redirecciona si si encuentra 
+                // Redirigir a la página principal
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
-                throw new  Exception ("error al ingresar usuario"+ ex);
-                //Manejar la excepcion 
-                ViewBag.Error = "Ha ocurrido un error"+ ex.Message;
+                // Manejar la excepción
+                ViewBag.Error = "Ha ocurrido un error: " + ex.Message;
                 return View();
             }
-
         }
     }
 }
+
