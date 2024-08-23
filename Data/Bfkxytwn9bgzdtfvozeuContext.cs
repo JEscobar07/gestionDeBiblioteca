@@ -1,15 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
+using gestionBiblioteca.Models;
+namespace gestionBiblioteca.Data;
 
-namespace gestionBiblioteca.Models;
-
+// Clase que ayuda a contener la base de datos donde se crea sus dependecias para su respectivo manejo y relaciones
 public partial class Bfkxytwn9bgzdtfvozeuContext : DbContext
 {
     public Bfkxytwn9bgzdtfvozeuContext()
     {
-    }
+    } 
 
     public Bfkxytwn9bgzdtfvozeuContext(DbContextOptions<Bfkxytwn9bgzdtfvozeuContext> options)
         : base(options)
@@ -38,6 +39,7 @@ public partial class Bfkxytwn9bgzdtfvozeuContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
     
+    // Importacion de las multiples relaciones que tiene las tablas
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
