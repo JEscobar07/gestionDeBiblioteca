@@ -37,6 +37,7 @@ namespace gestionBiblioteca.Controllers
 
             var viewModel = new LoanViewModel
             {
+                Loans = await bdLibrary.Loans.ToListAsync(),
                 Records = records,
                 Books = await bdLibrary.Books.ToListAsync(),
                 Clients = await bdLibrary.Clients.ToListAsync(),

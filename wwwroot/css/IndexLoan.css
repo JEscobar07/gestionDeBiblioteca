@@ -2,9 +2,11 @@
 
 .spaceOne{
     text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .title{
-    font-size: 100px;
+    font-size: 50px;
 }
 
 /* Estilos para los botones iniciales de la vista */
