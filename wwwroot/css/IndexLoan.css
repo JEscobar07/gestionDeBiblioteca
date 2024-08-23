@@ -1,7 +1,13 @@
+/* Clase css para la vista IndexLoan.cshtml */
+
 .spaceOne{
     text-align: center;
 }
+.title{
+    font-size: 100px;
+}
 
+/* Estilos para los botones iniciales de la vista */
 .buttonsOptions{
     display: flex;
     justify-content: center;
@@ -26,6 +32,11 @@
     font-size: 3rem;
 }
 
+.label{
+    font-size: 2rem;
+}
+
+/* Responsive cuando la pantalla sea mas grande para los botones principales de la vista */
 @media (width > 706px){
     .card{
         width: calc(20% - 0px);
