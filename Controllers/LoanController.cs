@@ -9,6 +9,8 @@ using gestionBiblioteca.Models;
 using gestionBiblioteca.Data;
 using Microsoft.EntityFrameworkCore;
 
+// Controlador utilizado en la vista IndexLoan.cshtml
+
 namespace gestionBiblioteca.Controllers
 {
     [Route("[controller]")]
@@ -21,6 +23,7 @@ namespace gestionBiblioteca.Controllers
             bdLibrary = _bdLibrary;
         }
 
+        //Este index es el metodo que me permite traer la informacion de las tablas que se requieren en la vista junto con objetos para acceder a sus parametros
         public async Task<IActionResult> IndexLoan()
         {
             var records = await bdLibrary.Records
@@ -40,10 +43,12 @@ namespace gestionBiblioteca.Controllers
             return View(viewModel);
         }
 
+        //Este metodo creara un nuevo prestamo de partiendo del objeto utilizado en el metodo IndexLoan
         [HttpPost]
         public async Task<IActionResult> CreateLoan(LoanViewModel loan)
         {
             var newLoan = loan.NewLoan;
+            newLoan.DeliveryDate = DateOnly.FromDateTime(DateTime.Now);
             newLoan.ReturnDate = null;
             bdLibrary.Loans.Add(newLoan);
             await bdLibrary.SaveChangesAsync();
