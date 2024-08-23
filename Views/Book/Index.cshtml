@@ -7,15 +7,18 @@
 
 <div>
     <div class="row">
-        <div class="col-sm-8 offset-sm-2">
-            <h2>Lista Libros</h2>
-            <table class="table table-bordered">
+        <a class = "btn btn-success" asp-controller = "Book" asp-action = "Create">Crear Libro</a>
+        <div class="">
+            <h2 class="text-center fs-1 fw-bold">Lista Libros</h2>
+            <table class="table table-striped-columns mt-4 table-hover">
                 <thead>
                     <th>Id</th>
                     <th>Titulo Libro</th>
                     <th>Estado</th>
                     <th>Autor</th>
                     <th>Categoria</th>
+                    <th></th>
+                    <th></th>
                 </thead>
                 <tbody>
                     @foreach (var libro in Model)
@@ -47,13 +50,13 @@
                                     break;
                                 }
                             }
-                            <td>
+                            <td class="text-center">
                                 <a asp-controller="Book" asp-action="Update" asp-route-id="@libro.IdBook"
-                                    class="btn btn-warning">Editar</a>
+                                    class="btn btn-success">Editar</a>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <a asp-controller="Book" asp-action="Delete" asp-route-id="@libro.IdBook"
-                                    class="btn btn-danger">Eliminar</a>
+                                    class="btn btn-success">Eliminar</a>
                             </td>
                         </tr>
                     }
