@@ -111,7 +111,53 @@
 
 @* Espacio 3: Actualizar un prestamo *@
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Loan ID</th>
+            <th>Book Title</th>
+            <th>Client Name</th>
+            <th>Delivery Date</th>
+            <th>Return Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var loan in Model.Loans)
+        {
+            var book = Model.Books.FirstOrDefault(b => b.IdBook == loan.IdBook);
+            var client = Model.Clients.FirstOrDefault(c => c.IdClient == loan.IdClient);
 
+            <tr>
+                <form asp-action="EditLoan" method="post">
+                    <td>@loan.IdLoan</td>
+                    <td>
+                        <input required type="text" class="form-control" name="BookTitle" value="@book.Title" />
+                    </td>
+                    <td>
+                        <select class="form-control" name="Id_Client">
+                            @foreach (var c in Model.Clients)
+                            {
+                                <option value="@c.IdClient">@c.Name</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <input type="date" class="form-control" name="Delivery_Date" value="@loan.DeliveryDate.ToString("yyyy-MM-dd")" />
+                    </td>
+                    <td>
+                        <input type="date" class="form-control" name="Return_Date" value="@loan.ReturnDate?.ToString("yyyy-MM-dd")" />
+                    </td>
+                    <td>
+                        <input type="hidden" name="Id" value="@loan.IdLoan" />
+                        <input type="hidden" name="Id_Book" value="@book.IdBook" />
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </td>
+                </form>
+            </tr>
+        }
+    </tbody>
+</table>
 
 @* Espacio 4: Historial de prestamos *@
 
