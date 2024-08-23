@@ -10,17 +10,21 @@ using gestionBiblioteca.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace gestionBiblioteca.Controllers
-{
+{   
+    //Controller 
     [Route("[controller]")]
     public class LoanController : Controller
     {
         private readonly Bfkxytwn9bgzdtfvozeuContext bdLibrary;
+
+        // Constructor
 
         public LoanController(Bfkxytwn9bgzdtfvozeuContext _bdLibrary)
         {
             bdLibrary = _bdLibrary;
         }
 
+        
         public async Task<IActionResult> IndexLoan()
         {
             var loans = await bdLibrary.Loans.ToListAsync();
@@ -37,6 +41,8 @@ namespace gestionBiblioteca.Controllers
             return View(viewModel); // Pasamos el modelo de vista a la vista
         }
 
+
+        // Método para devolver un préstamo
         [HttpPost]
         [Route("Loan/ReturnLoan")]
         public async Task<IActionResult> ReturnLoan(int id)
@@ -55,6 +61,7 @@ namespace gestionBiblioteca.Controllers
             return RedirectToAction(nameof(IndexLoan));
         }
 
+        // Método para editar un préstamo
         [HttpPost]
         public async Task<IActionResult> EditLoan(int id, int Id_Book, int Id_Client, DateTime Delivery_Date, DateTime? Return_Date)
         {
