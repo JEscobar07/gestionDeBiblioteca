@@ -27,6 +27,7 @@ namespace gestionBiblioteca.Controllers
         }
 
         //Este index es el metodo que me permite traer la informacion de las tablas que se requieren en la vista junto con objetos para acceder a sus parametros
+        [HttpGet("IndexLoan")]
         public async Task<IActionResult> IndexLoan()
         {
             var records = await bdLibrary.Records
@@ -48,7 +49,7 @@ namespace gestionBiblioteca.Controllers
         }
 
         //Este metodo creara un nuevo prestamo de partiendo del objeto utilizado en el metodo IndexLoan
-        [HttpPost]
+        [HttpPost("CreateLoan")]
         public async Task<IActionResult> CreateLoan(LoanViewModel loan)
         {
             var newLoan = loan.NewLoan;
@@ -80,7 +81,7 @@ namespace gestionBiblioteca.Controllers
         }
 
         // Método para editar un préstamo
-        [HttpPost]
+        [HttpPost("EditLoan")]
         public async Task<IActionResult> EditLoan(int id, int Id_Book, int Id_Client, DateTime Delivery_Date, DateTime? Return_Date)
         {
             var loan = await bdLibrary.Loans.FindAsync(id);
